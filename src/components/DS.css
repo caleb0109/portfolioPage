@@ -1,0 +1,587 @@
+/* Nintendo DS - fluid scaling, original grey shell, hinges */
+.ds {
+  --ds-width: min(96vw, 860px);
+  --side-cartridge-scale: 0.52;
+  --side-gap: clamp(20px, 4vw, 36px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--side-gap);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  position: relative;
+}
+
+/* Side cartridges: full cartridge, smaller, further from DS; dark by default, highlighted on hover */
+.ds-cartridge-peek {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.ds-cartridge-peek:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.ds-cartridge-peek:not(:disabled):hover {
+  transform: scale(1.05);
+}
+
+.ds-cartridge-peek:not(:disabled):active {
+  transform: scale(0.98);
+}
+
+.ds-cartridge-peek:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+.ds-cartridge-peek-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transform: scale(var(--side-cartridge-scale));
+  transform-origin: center center;
+  filter: brightness(0.5);
+  transition: filter 0.25s ease, box-shadow 0.25s ease;
+  border-radius: 12px;
+}
+
+.ds-cartridge-peek:not(:disabled):hover .ds-cartridge-peek-inner {
+  filter: brightness(1.15);
+  box-shadow: 0 0 24px var(--accent-dim), 0 0 12px rgba(45, 212, 191, 0.35);
+}
+
+.ds-cartridge-peek--left .ds-cartridge-peek-inner {
+  justify-content: flex-end;
+}
+
+.ds-cartridge-peek--right .ds-cartridge-peek-inner {
+  justify-content: flex-start;
+}
+
+.ds-cartridge-peek .cartridge-body {
+  flex-shrink: 0;
+}
+
+/* Side cartridge slides into DS when selected */
+.ds-cartridge-peek--left.ds-cartridge-peek--animating .ds-cartridge-peek-inner {
+  animation: sideCartridgeSlideInFromLeft 0.45s ease-out forwards;
+  pointer-events: none;
+}
+
+.ds-cartridge-peek--right.ds-cartridge-peek--animating .ds-cartridge-peek-inner {
+  animation: sideCartridgeSlideInFromRight 0.45s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes sideCartridgeSlideInFromLeft {
+  0% {
+    transform: scale(var(--side-cartridge-scale)) translateX(0);
+    opacity: 1;
+    filter: brightness(1.1);
+  }
+  60% {
+    transform: scale(0.2) translateX(280%);
+    opacity: 0.95;
+    filter: brightness(1);
+  }
+  100% {
+    transform: scale(0.16) translateX(380%);
+    opacity: 0;
+    filter: brightness(0.9);
+  }
+}
+
+@keyframes sideCartridgeSlideInFromRight {
+  0% {
+    transform: scale(var(--side-cartridge-scale)) translateX(0);
+    opacity: 1;
+    filter: brightness(1.1);
+  }
+  60% {
+    transform: scale(0.2) translateX(-280%);
+    opacity: 0.95;
+    filter: brightness(1);
+  }
+  100% {
+    transform: scale(0.16) translateX(-380%);
+    opacity: 0;
+    filter: brightness(0.9);
+  }
+}
+
+/* Wrapper: two blocks + hinge, no single shell */
+.ds-frame {
+  width: var(--ds-width);
+  max-width: 100%;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+  min-width: 0;
+}
+
+/* Whole DS "clicks" when a side cartridge slots in */
+.ds-frame--click {
+  animation: dsFrameClick 0.25s ease-out 0.28s both;
+}
+
+@keyframes dsFrameClick {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(0.985);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Hinge: small connector between the two blocks – doesn’t poke out */
+.ds-hinge-wrap {
+  width: calc(100% - clamp(24px, 5vw, 40px));
+  margin: 0 auto;
+  padding: clamp(3px, 0.8vw, 6px) clamp(8px, 1.5vw, 12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+  background: linear-gradient(180deg, #252525 0%, #1a1a1a 50%, #222 100%);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  border: none;
+}
+
+.ds-hinge-barrel {
+  width: clamp(10px, 2.2vw, 16px);
+  height: clamp(8px, 1.8vw, 12px);
+  background: linear-gradient(180deg, #505050 0%, #353535 50%, #282828 100%);
+  border-radius: 50%;
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.12),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.4);
+  border: 1px solid #3a3a3a;
+  flex-shrink: 0;
+}
+
+.ds-hinge {
+  width: 32%;
+  max-width: 56px;
+  height: clamp(6px, 1.4vw, 10px);
+  background: linear-gradient(180deg, #454545 0%, #323232 100%);
+  border-radius: 2px;
+  position: relative;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border: 1px solid #303030;
+}
+
+.ds-power {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(5px, 1.2vw, 8px);
+  height: clamp(5px, 1.2vw, 8px);
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #4a4, #1a3a1a);
+  box-shadow: 0 0 3px rgba(68, 255, 68, 0.4);
+}
+
+/* Top block: own rounded shell (lid half of DS) – speakers on each side of screen */
+.ds-top {
+  --ds-top-bg: linear-gradient(180deg, #b0b0b0 0%, #9a9a9a 25%, #888 60%, #787878 100%);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: clamp(8px, 1.8vw, 14px);
+  background: var(--ds-top-bg);
+  border-radius: clamp(18px, 4vw, 28px);
+  padding: clamp(14px, 2.8vw, 24px);
+  border: 2px solid #8a8a8a;
+  min-width: 0;
+  box-shadow:
+    inset 0 2px 6px rgba(255, 255, 255, 0.35),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.15),
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 1;
+}
+
+/* Speaker grilles – transparent so top block shows through, 7×4 black holes only */
+.ds-speakers {
+  width: clamp(40px, 8vw, 64px);
+  height: clamp(40px, 8vw, 64px);
+  flex-shrink: 0;
+  align-self: flex-end;
+  margin-bottom: clamp(26px, 5.5vw, 44px);
+  padding: 0;
+  box-sizing: border-box;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+
+/* Exactly 7 columns × 4 rows, black holes only */
+.ds-speakers--left,
+.ds-speakers--right {
+  background-color: transparent;
+  background-image: radial-gradient(circle at center, #0d0d0d 0%, #1a1a1a 30%, transparent 42%);
+  background-size: calc(100% / 7) calc(100% / 4);
+  background-position: 0 0;
+  background-origin: content-box;
+  background-clip: content-box;
+  background-repeat: repeat;
+}
+
+/* Top screen - fluid height, between the two speakers */
+.ds-top-screen {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: 4 / 3;
+  max-height: clamp(200px, 56vw, 420px);
+  border-radius: clamp(6px, 1.2vw, 8px);
+  overflow: hidden;
+  background: var(--crt-screen-bg);
+  position: relative;
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.6);
+}
+
+.ds-top-screen > * {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.ds-top-screen > *::-webkit-scrollbar {
+  display: none;
+}
+
+/* Bottom block: own rounded shell (base half of DS) – bulkier like old DS */
+.ds-bottom {
+  --side-control-col: clamp(72px, 14vw, 108px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.8vw, 12px);
+  min-width: 0;
+  position: relative;
+  padding: clamp(14px, 2.8vw, 24px);
+  padding-top: clamp(16px, 3vw, 22px);
+  background: linear-gradient(180deg, #909090 0%, #7a7a7a 30%, #6e6e6e 70%, #626262 100%);
+  border-radius: clamp(18px, 4vw, 28px);
+  border: 2px solid #6a6a6a;
+  overflow: clip;
+  box-shadow:
+    inset 0 2px 6px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2),
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.ds-system-controls {
+  position: absolute;
+  top: clamp(5px, 1vw, 8px);
+  left: clamp(14px, 2.8vw, 24px);
+  right: clamp(14px, 2.8vw, 24px);
+  z-index: 2;
+  display: grid;
+  grid-template-columns: var(--side-control-col) minmax(0, 1fr) var(--side-control-col);
+  align-items: flex-start;
+  justify-items: center;
+}
+
+.ds-system-buttons {
+  display: flex;
+  gap: clamp(6px, 1.2vw, 10px);
+  justify-content: center;
+}
+
+.ds-power-btn {
+  grid-column: 1;
+}
+
+.ds-system-buttons--right {
+  grid-column: 3;
+}
+
+.ds-system-btn {
+  border: 1px solid #2a2a2a;
+  border-radius: 999px;
+  padding: clamp(2px, 0.5vw, 3px) clamp(5px, 1vw, 8px);
+  background: linear-gradient(135deg, #2f2f2f 0%, #1d1d1d 55%, #101010 100%);
+  color: #090909;
+  font-family: var(--font-pixel);
+  font-size: clamp(0.31rem, 0.74vw, 0.42rem);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.08),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.45),
+    0 1px 2px rgba(0, 0, 0, 0.35);
+  opacity: 0.9;
+}
+
+.ds-power-btn {
+  border: 1px solid #2a2a2a;
+  border-radius: 999px;
+  padding: clamp(2px, 0.5vw, 3px) clamp(6px, 1.1vw, 8px);
+  background: linear-gradient(135deg, #2f2f2f 0%, #1d1d1d 55%, #101010 100%);
+  color: #090909;
+  font-family: var(--font-pixel);
+  font-size: clamp(0.31rem, 0.74vw, 0.42rem);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.08),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.45),
+    0 1px 2px rgba(0, 0, 0, 0.35);
+  opacity: 0.95;
+}
+
+.ds-system-btn:disabled,
+.ds-power-btn:disabled {
+  cursor: default;
+}
+
+.ds-controls-row {
+  display: grid;
+  grid-template-columns: var(--side-control-col) minmax(0, 1fr) var(--side-control-col);
+  align-items: center;
+  gap: clamp(8px, 1.8vw, 12px);
+  width: 100%;
+  min-width: 0;
+}
+
+/* D-pad - scales down on small screens */
+.ds-dpad {
+  width: clamp(62px, 13vw, 96px);
+  height: clamp(62px, 13vw, 96px);
+  justify-self: center;
+  position: relative;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.ds-dpad-inner {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #2f2f2f 0%, #1d1d1d 55%, #101010 100%);
+  clip-path: polygon(
+    30% 0%, 70% 0%, 70% 30%, 100% 30%, 100% 70%, 70% 70%, 70% 100%, 30% 100%, 30% 70%, 0% 70%, 0% 30%, 30% 30%
+  );
+  box-shadow:
+    inset 0 2px 2px rgba(255, 255, 255, 0.08),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+/* D-pad hit areas for carousel (left/right scroll) */
+.ds-dpad-btn {
+  position: absolute;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1;
+}
+
+.ds-dpad-btn:disabled {
+  cursor: default;
+}
+
+.ds-dpad-btn--left {
+  left: 0;
+  top: 30%;
+  bottom: 30%;
+  width: 35%;
+}
+
+.ds-dpad-btn--right {
+  right: 0;
+  top: 30%;
+  bottom: 30%;
+  width: 35%;
+}
+
+.ds-dpad-btn--up {
+  top: 0;
+  left: 30%;
+  right: 30%;
+  height: 35%;
+}
+
+.ds-dpad-btn--down {
+  bottom: 0;
+  left: 30%;
+  right: 30%;
+  height: 35%;
+}
+
+/* Bottom screen - fluid, bigger */
+.ds-bottom-screen {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: 4 / 3;
+  max-height: clamp(180px, 52vw, 400px);
+  border-radius: clamp(8px, 1.6vw, 12px);
+  overflow: hidden;
+  background: #0c0c10;
+  border: 2px solid #222;
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.5);
+}
+
+/* XYAB buttons - scale with viewport */
+.ds-buttons {
+  width: clamp(60px, 13vw, 96px);
+  height: clamp(60px, 13vw, 96px);
+  justify-self: center;
+  position: relative;
+}
+
+.ds-btn {
+  position: absolute;
+  width: clamp(22px, 4.5vw, 34px);
+  height: clamp(22px, 4.5vw, 34px);
+  min-width: 22px;
+  min-height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-pixel);
+  font-size: clamp(0.4rem, 1vw, 0.55rem);
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(180deg, #4a4a4a 0%, #2a2a2a 50%, #1a1a1a 100%);
+  border: 2px solid #333;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1), 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.ds-btn--x { top: 0; left: 50%; transform: translateX(-50%); }
+.ds-btn--y { top: 50%; left: 0; transform: translateY(-50%); }
+.ds-btn--b { bottom: 0; left: 50%; transform: translateX(-50%); }
+.ds-btn--a { top: 50%; right: 0; transform: translateY(-50%); background: linear-gradient(180deg, #c44 0%, #8a2a2a 50%, #5a1a1a 100%); }
+
+/* Small screens: compact layout, ensure nothing overflows */
+@media (max-width: 480px) {
+  .ds {
+    --ds-width: 100%;
+    gap: 4px;
+    justify-content: center;
+    overflow-x: clip;
+  }
+
+  /* On small screens the side cartridge buttons were using the desktop cartridge
+     min sizes, which can force horizontal overflow even though we scale the inner
+     element. Allow shrinking and override peek cartridge layout sizing. */
+  .ds-cartridge-peek {
+    display: none;
+  }
+
+  .ds-frame {
+    flex-shrink: 1;
+  }
+
+  .ds-cartridge-peek .cartridge-body {
+    min-width: 0;
+    min-height: 0;
+    width: clamp(78px, 22vw, 102px);
+    height: clamp(90px, 24vw, 120px);
+  }
+
+  .ds-cartridge-peek-inner {
+    --side-cartridge-scale: 0.42;
+  }
+
+  .ds {
+    gap: 4px;
+  }
+
+  .ds-top {
+    gap: 0;
+    padding: 10px;
+  }
+
+  .ds-speakers {
+    display: none;
+  }
+
+  .ds-hinge-wrap {
+    display: none;
+  }
+
+  .ds-top-screen {
+    max-height: none;
+  }
+
+  .ds-bottom {
+    gap: 0;
+    padding: 10px;
+    padding-top: 10px;
+  }
+
+  .ds-system-controls {
+    top: 7px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .ds-system-btn,
+  .ds-power-btn {
+    font-size: 0.29rem;
+    padding: 2px 6px;
+  }
+
+  .ds-controls-row {
+    gap: 0;
+    justify-content: center;
+  }
+
+  .ds-dpad {
+    display: none;
+  }
+
+  .ds-buttons {
+    display: none;
+  }
+
+  .ds-bottom-screen {
+    max-height: none;
+  }
+
+  .ds-btn {
+    width: 20px;
+    height: 20px;
+    font-size: 0.35rem;
+  }
+}

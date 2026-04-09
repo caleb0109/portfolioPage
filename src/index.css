@@ -1,0 +1,60 @@
+:root {
+  --bg: #0a0c0d;
+  --bg-elevated: #0f1214;
+  --crt-screen-bg: #0d1014;
+  --accent: #2dd4bf;
+  --accent-dim: rgba(45, 212, 191, 0.25);
+  --crt-glow: var(--accent-dim);
+  --link: #5eead4;
+  --link-hover: #99f6e4;
+  --text: #e8f4f2;
+  --text-muted: #94a3b8;
+  --font-pixel: 'Press Start 2P', cursive;
+  --font-vt: 'VT323', monospace;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-vt);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.35) 100%);
+  pointer-events: none;
+  z-index: 1000;
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: clamp(0.4rem, 1.5vw, 1rem);
+  padding-top: max(clamp(0.4rem, 1.5vw, 1rem), var(--safe-top));
+  padding-right: max(clamp(0.4rem, 1.5vw, 1rem), var(--safe-right));
+  padding-bottom: max(clamp(0.4rem, 1.5vw, 1rem), var(--safe-bottom));
+  padding-left: max(clamp(0.4rem, 1.5vw, 1rem), var(--safe-left));
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}

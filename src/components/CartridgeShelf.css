@@ -1,0 +1,11 @@
+.cartridge-shelf {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.4rem, 1.2vw, 0.65rem);
+  width: 100%;
+  max-width: min(860px, 100%);
+  min-width: 0;
+  padding: 0 0.2rem;
+}
