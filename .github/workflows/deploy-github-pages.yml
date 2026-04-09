@@ -1,5 +1,7 @@
 # Deploy Vite production build to GitHub Pages.
 # Repo settings → Pages → Build and deployment → Source: GitHub Actions
+# Do NOT use "Deploy from a branch" with folder "/" — that publishes this repo's
+# source index.html (unbundled JSX), which browsers will not run → blank page.
 name: Deploy to GitHub Pages
 
 on:
