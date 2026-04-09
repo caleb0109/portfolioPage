@@ -1,6 +1,7 @@
 import { useEffect, useCallback } from 'react'
 import { education, skills, experience } from '../data/portfolio'
 import './BottomScreen.css'
+import { resolveAssetUrl } from '../utils/assetUrl'
 
 function ResumeScreen() {
   return (
@@ -102,7 +103,7 @@ export default function BottomScreen({ screen, noCartridge, carouselIndex, setCa
             >
               {images.map((src, i) => (
                 <div key={i} className="bottom-screen-slide">
-                  <img src={src} alt="" className="bottom-screen-img" />
+                  <img src={resolveAssetUrl(src)} alt="" className="bottom-screen-img" />
                 </div>
               ))}
             </div>
@@ -133,7 +134,7 @@ export default function BottomScreen({ screen, noCartridge, carouselIndex, setCa
     <div className="bottom-screen">
       <div className="bottom-screen-image">
         {singleUrl ? (
-          <img src={singleUrl} alt="" className="bottom-screen-img" />
+          <img src={resolveAssetUrl(singleUrl)} alt="" className="bottom-screen-img" />
         ) : (
           <span className="bottom-screen-emoji" aria-hidden="true">{imagePlaceholder}</span>
         )}

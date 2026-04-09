@@ -1,4 +1,5 @@
 import './TVScreen.css'
+import { resolveAssetUrl } from '../utils/assetUrl'
 
 const INTRO_PARA_1 =
   "Hello! I'm 24 years old game developer / producer with a degree in Game Design and Development from RIT."
@@ -16,7 +17,7 @@ function IntroScreen({ profileName }) {
       <div className="tv-intro-photo-wrap">
         <img
           className="tv-intro-photo"
-          src="/images/caleb.webp"
+          src={resolveAssetUrl('/images/caleb.webp')}
           alt={profileName ? `Photo of ${profileName}` : 'Portrait'}
           width={280}
           height={280}
@@ -43,7 +44,7 @@ export default function TVScreen({ profile, screen, noCartridge }) {
       <div className="tv-screen tv-project">
         <div className="tv-project-image" aria-hidden="true">
           {p.imageUrl ? (
-            <img src={p.imageUrl} alt="" className="tv-project-img" />
+            <img src={resolveAssetUrl(p.imageUrl)} alt="" className="tv-project-img" />
           ) : (
             <span className="tv-project-emoji">{p.imagePlaceholder}</span>
           )}
