@@ -1,4 +1,3 @@
-import { assetUrl } from '../utils/assetUrl.js'
 import './TVScreen.css'
 
 const INTRO_PARA_1 =
@@ -17,7 +16,7 @@ function IntroScreen({ profileName }) {
       <div className="tv-intro-photo-wrap">
         <img
           className="tv-intro-photo"
-          src={assetUrl('images/caleb.webp')}
+          src="/images/caleb.webp"
           alt={profileName ? `Photo of ${profileName}` : 'Portrait'}
           width={280}
           height={280}
