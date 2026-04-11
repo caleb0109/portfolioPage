@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: var(--side-gap);
   width: 100%;
   max-width: 100%;
@@ -562,9 +563,14 @@
     padding: 2px 6px;
   }
 
+  /* Single full-width column so the bottom display matches the top (grid side
+     columns were still reserving space while d-pad / face buttons are hidden). */
   .ds-controls-row {
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 0;
     justify-content: center;
+    justify-items: stretch;
   }
 
   .ds-dpad {
@@ -576,7 +582,15 @@
   }
 
   .ds-bottom-screen {
+    grid-column: 1;
+    width: 100%;
+    max-width: 100%;
     max-height: none;
+    /* Match top screen treatment on small viewports */
+    background: var(--crt-screen-bg);
+    border: none;
+    border-radius: clamp(6px, 1.2vw, 8px);
+    box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.6);
   }
 
   .ds-btn {
