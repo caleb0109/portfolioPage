@@ -70,8 +70,13 @@ export default function TVScreen({ profile, screen, noCartridge }) {
             <li key={i}>{h}</li>
           ))}
         </ul>
-        {(p.itchUrl || p.githubUrl) && (
+        {(p.itchUrl || p.githubUrl || p.websiteUrl) && (
           <div className="tv-project-links">
+            {p.websiteUrl && (
+              <a href={p.websiteUrl} target="_blank" rel="noopener noreferrer" className="tv-itch-link">
+                Visit website →
+              </a>
+            )}
             {p.itchUrl && (
               <a href={p.itchUrl} target="_blank" rel="noopener noreferrer" className="tv-itch-link">
                 Play on itch.io →

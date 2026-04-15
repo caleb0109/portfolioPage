@@ -4,7 +4,7 @@ export const profile = {
   github: 'https://github.com/caleb0109',
   linkedin: 'https://www.linkedin.com/in/caleb-jeon/',
   itch: 'https://byeung.itch.io',
-  tagline: 'Game Design & Development',
+  tagline: 'Gameplay Programmer & Producer',
 }
 
 export const education = {
@@ -96,7 +96,7 @@ export const cartridges = [
   },
   {
     id: 'changeling',
-    label: "CHANGELING'S TODDLER",
+    label: "CHANGELING",
     color: '#2c5282',
     screen: 'changeling',
   },
@@ -124,17 +124,22 @@ export const screenContent = {
     description: 'With the rise of dating apps, Heaven HQ has been laying off Cupid employees. Play as a Cupid hustling to start up his own dating service. Help your clients find the perfect match for them at Cupid Cafe!',
     mainRole: 'Game Developer',
     contributions: [
-      'Built and polished core simulation interactions for a playful dating-cafe loop.',
-      'Implemented gameplay flow and balancing to keep each customer scenario readable and fun.',
+      'Created Cupid Cafe, a dating simulator, within 48 hours for a game jam with a team of 3.',
+      'Implemented the UI, dialogue system with unique dialogue trees for each customer, and the matchmaking system.',
     ],
-    highlights: ['Dating simulator', 'Play in browser'],
+    highlights: ['Dating simulator', 'Play in browser', 'Game jam'],
     imagePlaceholder: '☕',
     imageUrl: '/images/cupidCafe1.png',
-    itchUrl: 'https://byeung.itch.io/cupid-cafe',
-    githubUrl: 'https://github.com/caleb0109/Cupid-Cafe',
+    itchUrl: 'https://byeung.itch.io/cupid-cafe', // TODO: add itch.io link
+    githubUrl: 'https://github.com/caleb0109/Cupid-Cafe', // TODO: add github link
     lowerScreenImage: '☕',
-    lowerScreenImages: ['/images/cupidCafe1.png'],
-    lowerScreenText: ['Screenshot / artwork placeholder', 'Match customers with love interests'],
+    lowerScreenImages: [
+      '/images/cupidCafe1.png',
+      '/images/cupidCafe2.png',
+      '/images/cupidCafe3.png',
+      '/images/cupidCafe4.png',
+    ],
+    lowerScreenText: ['Screenshots', 'Match customers with love interests'],
   },
   'boil-and-bubble': {
     type: 'project',
@@ -237,6 +242,7 @@ export const screenContent = {
     ],
     highlights: ['VR', '10-person team', 'Ring Toss mini-game', 'Unreal profiling'],
     imagePlaceholder: '🎮',
+    websiteUrl: 'https://changelingvr.vercel.app',
     githubUrl: '',
     lowerScreenImage: '🎮',
     lowerScreenText: ['VR / level screenshot placeholder', 'Ring Toss mini-game · IGM'],
@@ -259,7 +265,12 @@ export const screenContent = {
     imageUrl: '/images/SleepwalkerIcon.png',
     githubUrl: 'https://github.com/caleb0109/sleepwalkers',
     lowerScreenImage: '🌙',
-    lowerScreenImages: ['/images/Sleepwalker1.png', '/images/Sleepwalker2.png'],
+    lowerScreenImages: [
+      '/images/Sleepwalker1.png',
+      '/images/Sleepwalker2.png',
+      '/images/Sleepwalker3.png',
+      '/images/Sleepwalker4.png',
+    ],
     lowerScreenText: ['Battle / overworld screenshots', 'Magic Spell · Rockstar mentors'],
   },
 }
