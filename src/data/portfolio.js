@@ -130,7 +130,7 @@ export const screenContent = {
     highlights: ['Dating simulator', 'Play in browser', 'Game jam'],
     imagePlaceholder: '☕',
     imageUrl: '/images/cupidCafe1.png',
-    itchUrl: 'https://byeung.itch.io/cupid-cafe', // TODO: add itch.io link
+    itchUrl: 'https://meowvian.itch.io/cupid-cafe', // TODO: add itch.io link
     githubUrl: 'https://github.com/caleb0109/Cupid-Cafe', // TODO: add github link
     lowerScreenImage: '☕',
     lowerScreenImages: [
@@ -179,7 +179,7 @@ export const screenContent = {
     highlights: ['Simulation','Play in browser', 'Real-time social media', 'GBA-style aesthetic'],
     imagePlaceholder: '🐣',
     imageUrl: '/images/pocket_pet1.png',
-    itchUrl: 'https://byeung.itch.io/pocket-pet-exe',
+    itchUrl: 'https://byeung.itch.io/pocket-petexe',
     githubUrl: 'https://github.com/caleb0109/Pocket_Pet.exe',
     lowerScreenImage: '🐣',
     lowerScreenImages: ['/images/pocket_pet1.png', '/images/pocket_pet2.png', '/images/pocket_pet3.png'],
@@ -201,7 +201,7 @@ export const screenContent = {
     highlights: ['Visual novel', '4 unique endings', 'Play in browser'],
     imagePlaceholder: '🫧',
     imageUrl: '/images/bubbleBreakIcon.png',
-    itchUrl: 'https://byeung.itch.io/bubble-break',
+    itchUrl: 'https://sakasakasa.itch.io/bubble-break',
     githubUrl: 'https://github.com/caleb0109/BubbleBreak',
     lowerScreenImage: '🫧',
     lowerScreenImages: ['/images/bubbleBreak1.png', '/images/bubbleBreak2.png', '/images/bubbleBreak3.png'],
