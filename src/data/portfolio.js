@@ -56,7 +56,7 @@ export const experience = [
   },
 ]
 
-// Cartridges = "games" that show on the CRT. itch.io projects + About, Changeling, Sleepwalker.
+// Cartridges drive the DS top/bottom screens (projects + About).
 export const cartridges = [
   {
     id: 'about',

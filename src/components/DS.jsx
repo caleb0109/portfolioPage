@@ -6,9 +6,7 @@ const DRAG_TYPE = 'application/x-portfolio-cartridge'
 export default function DS({
   topScreen,
   bottomScreen,
-  insertedCartridge,
   onInsert,
-  onEject,
   cartridges,
   prevCartridge,
   nextCartridge,

@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { profile, cartridges, screenContent } from './data/portfolio'
 import Hero from './components/Hero'
 import DS, { DRAG_TYPE } from './components/DS'
-import TVScreen from './components/TVScreen'
+import TopScreen from './components/TopScreen'
 import BottomScreen from './components/BottomScreen'
 import CartridgeShelf from './components/CartridgeShelf'
 import './App.css'
@@ -16,10 +16,6 @@ function App() {
 
   const currentScreen = selectedCartridge
     ? screenContent[cartridges.find((c) => c.id === selectedCartridge)?.screen]
-    : null
-
-  const insertedCartridge = selectedCartridge
-    ? cartridges.find((c) => c.id === selectedCartridge) ?? null
     : null
 
   const imageCount = currentScreen?.lowerScreenImages?.length ?? 0
@@ -113,7 +109,7 @@ function App() {
       <main className="main">
         <DS
           topScreen={
-            <TVScreen
+            <TopScreen
               profile={profile}
               screen={currentScreen}
               noCartridge={!selectedCartridge}
@@ -127,9 +123,7 @@ function App() {
               setCarouselIndex={setCarouselIndex}
             />
           }
-          insertedCartridge={insertedCartridge}
           onInsert={handleInsert}
-          onEject={() => setSelectedCartridge(null)}
           cartridges={cartridges}
           prevCartridge={prevCartridge}
           nextCartridge={nextCartridge}
